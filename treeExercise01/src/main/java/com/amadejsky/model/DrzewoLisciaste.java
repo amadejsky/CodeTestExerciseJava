@@ -3,12 +3,15 @@ package com.amadejsky.model;
 import com.amadejsky.enums.TypLisci;
 
 public class DrzewoLisciaste extends Drzewo{
-    public DrzewoLisciaste(String pien, String galezie, TypLisci liscie) {
-        super(pien, galezie, liscie);
+    public DrzewoLisciaste(String nazwa, String pien, String galezie) {
+        super(nazwa, pien, galezie, TypLisci.LISCIASTE);
     }
 
+    //Oczywiście można by wprowadzić jakiś licznik typu wzrost inkrementujący się przy wywołaniu metody rosnij()
     @Override
-    void rosnij() {
-        System.out.println("Drzewo Lisciaste rośnie!");
+    public void rosnij() {
+        System.out.println(
+                this.nazwa+ ", drzewo Lisciaste rośnie!"
+        );
     }
 }
