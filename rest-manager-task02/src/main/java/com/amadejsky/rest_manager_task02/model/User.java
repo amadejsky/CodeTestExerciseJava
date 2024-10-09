@@ -11,7 +11,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     protected String imie;
-    protected String nazisko;
+    protected String nazwisko;
     protected String email;
 
 }

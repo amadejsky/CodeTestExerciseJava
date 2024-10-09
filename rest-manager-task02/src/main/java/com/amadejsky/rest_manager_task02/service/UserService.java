@@ -7,6 +7,7 @@ import java.util.Optional;
 
 public interface UserService {
     List<User> getUsers();
+    List<User> getUsersByNazwisko(String nazwisko);
     User addUser(User user);
     void deleteUser(Long id);
 }

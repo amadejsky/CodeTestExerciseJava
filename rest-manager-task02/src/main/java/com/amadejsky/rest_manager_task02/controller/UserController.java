@@ -27,9 +27,14 @@ public class UserController {
     public List<User> getAllUsers(){
         return userService.getUsers();
     }
-    @DeleteMapping()
-    public void deleteUserById(@PathVariable Long id){
+    @GetMapping("/filter/nazwisko")
+    public List<User> getUsersByNazwisko(@RequestParam String nazwisko){
+        return userService.getUsersByNazwisko(nazwisko);
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<User> deleteUserById(@PathVariable Long id){
         userService.deleteUser(id);
+        return ResponseEntity.noContent().build();
     }
 
 }
