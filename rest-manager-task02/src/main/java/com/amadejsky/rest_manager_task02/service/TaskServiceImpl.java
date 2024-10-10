@@ -20,7 +20,7 @@ public class TaskServiceImpl implements TaskService{
         return taskRepository.findAll();
     }
     @Override
-    public List<Task> getTaskByStatus(Task.Status status) {
+    public List<Task> getTasksByStatus(Task.Status status) {
         return taskRepository.findAllByStatus(status);
     }
 
