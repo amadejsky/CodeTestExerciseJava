@@ -14,8 +14,15 @@ public class Task {
     private Long id;
     protected String tytul;
     protected String opis;
-    protected String status;
+    protected Status status;
     protected LocalDate termin;
     @ManyToMany
     protected List<User> przypisaniUzytkonicy;
+
+    public enum Status{
+        AKTYWNE,
+        ZAKONCZONE,
+        ANULOWANE,
+        ZAMKNIETE
+    }
 }
