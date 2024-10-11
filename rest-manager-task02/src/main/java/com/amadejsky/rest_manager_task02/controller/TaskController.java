@@ -23,7 +23,7 @@ public class TaskController {
         return taskService.getTasks();
     }
 
-    @GetMapping()
+    @GetMapping("/filter/status")
     public List<Task> filtrujPoStatusie(@RequestParam Task.Status status){
         return taskService.getTasksByStatus(status);
     }
@@ -41,7 +41,14 @@ public class TaskController {
     public void changeStatus(@PathVariable Long id, @RequestParam Task.Status status){
         taskService.changeTaskStatus(id,status);
     }
-
+    @PutMapping("/{id}")
+    public Task putTask(@PathVariable Long id, @RequestBody Task task){
+        return taskService.putTask(id, task);
+    }
+    @PatchMapping("/{id}")
+    public Task patchTask(@PathVariable Long id, @RequestBody Task task){
+        return  taskService.patchTask(id, task);
+    }
 
 
 

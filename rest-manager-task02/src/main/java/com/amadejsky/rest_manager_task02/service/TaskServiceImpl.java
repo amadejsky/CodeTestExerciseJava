@@ -5,6 +5,7 @@ import com.amadejsky.rest_manager_task02.exception.UserNotFoundException;
 import com.amadejsky.rest_manager_task02.model.Task;
 import com.amadejsky.rest_manager_task02.repository.TaskRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -39,7 +40,7 @@ public class TaskServiceImpl implements TaskService{
     }
 
     @Override
-    public Task updateTask(Long id, Task updatedTask) {
+    public Task putTask(Long id, Task updatedTask) {
         return taskRepository.findById(id)
                 .map(existingTask ->{
                     existingTask.setTytul(updatedTask.getTytul());
@@ -50,7 +51,28 @@ public class TaskServiceImpl implements TaskService{
                     return taskRepository.save(existingTask);
                 }).orElseThrow(() -> new TaskNotFoundException("Task with given ID: "+id+" does not exists!"));
     }
-
+    @Override
+    public Task patchTask(Long id, Task updatedTask) {
+        return taskRepository.findById(id)
+                .map(existingTask ->{
+                   if(!StringUtils.isEmpty(updatedTask.getTytul())){
+                       existingTask.setTytul(updatedTask.getTytul());
+                   }
+                    if(!StringUtils.isEmpty(updatedTask.getOpis())){
+                        existingTask.setOpis(updatedTask.getOpis());
+                    }
+                    if(!StringUtils.isEmpty(updatedTask.getStatus())){
+                        existingTask.setStatus(updatedTask.getStatus());
+                    }
+                    if(!StringUtils.isEmpty(updatedTask.getTermin())){
+                        existingTask.setTermin(updatedTask.getTermin());
+                    }
+                    if(!StringUtils.isEmpty(updatedTask.getPrzypisaniUzytkonicy())){
+                        existingTask.setPrzypisaniUzytkonicy(updatedTask.getPrzypisaniUzytkonicy());
+                    }
+                   return taskRepository.save(existingTask);
+                }).orElseThrow(() -> new TaskNotFoundException("Task with given ID: "+id+" does not exists!"));
+    }
     @Override
     public Task changeTaskStatus(Long id, Task.Status newStatus) {
         return taskRepository.findById(id)

@@ -10,9 +10,12 @@ public interface TaskService {
     List<Task> getTasksByStatus(Task.Status status);
     Task addTask(Task task);
     void deleteTask(Long id);
-    Task updateTask(Long id, Task updatedTask);
+    Task putTask(Long id, Task updatedTask);
+    Task patchTask(Long id, Task updatedTask);
     Task changeTaskStatus(Long id, Task.Status newStatus);
 
     Task assignUserToTask(Long taskId, Long userId);
+
+
 
 }

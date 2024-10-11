@@ -16,7 +16,7 @@ public class Task {
     protected String opis;
     protected Status status;
     protected LocalDate termin;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     protected List<User> przypisaniUzytkonicy;
 
     public enum Status{
