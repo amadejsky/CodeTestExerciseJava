@@ -24,7 +24,7 @@ public class TaskController {
     }
 
     @GetMapping("/filter/status")
-    public List<Task> filtrujPoStatusie(@RequestParam Task.Status status){
+    public List<Task> filtrujPoStatusie(@RequestParam String status){
         return taskService.getTasksByStatus(status);
     }
     @PostMapping()
@@ -38,7 +38,7 @@ public class TaskController {
         return ResponseEntity.noContent().build();
     }
     @GetMapping("/{id}/change-status")
-    public void changeStatus(@PathVariable Long id, @RequestParam Task.Status status){
+    public void changeStatus(@PathVariable Long id, @RequestParam String status){
         taskService.changeTaskStatus(id,status);
     }
     @PutMapping("/{id}")
