@@ -49,6 +49,11 @@ public class TaskController {
     public Task patchTask(@PathVariable Long id, @RequestBody Task task){
         return  taskService.patchTask(id, task);
     }
+    @PutMapping("/{taskId}/assign/{userId}")
+    public ResponseEntity<Task> assignUserToTask(@PathVariable Long taskId, @PathVariable Long userId){
+        Task updatedTask = taskService.assignUserToTask(taskId, userId);
+        return ResponseEntity.ok(updatedTask);
+    }
 
 
 

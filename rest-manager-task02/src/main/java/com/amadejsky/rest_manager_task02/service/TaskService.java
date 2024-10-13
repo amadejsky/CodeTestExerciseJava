@@ -13,7 +13,6 @@ public interface TaskService {
     Task putTask(Long id, Task updatedTask);
     Task patchTask(Long id, Task updatedTask);
     Task changeTaskStatus(Long id, String newStatusParam);
-
     Task assignUserToTask(Long taskId, Long userId);
 
 

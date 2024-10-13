@@ -33,6 +33,7 @@ public class Task {
         AKTYWNE,
         ZAKONCZONE,
         ANULOWANE,
-        ZAMKNIETE
+        PRIORYTETOWE,
+        OPOZNIONE
     }
 }

@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
-public class UserExceptionHandler {
+public class GlobalExceptionHandler {
 
     @ExceptionHandler(UserNotFoundException.class)
     public ResponseEntity<String> handleUserNotFound(UserNotFoundException exception){
@@ -26,4 +26,10 @@ public class UserExceptionHandler {
                 .status(HttpStatus.BAD_REQUEST)
                 .body(exception.getMessage());
     }
+    @ExceptionHandler(UserAlreadyAssignedException.class)
+        public ResponseEntity<String> handleAlreadyAssigned(UserAlreadyAssignedException exception){
+        return ResponseEntity
+                .status(HttpStatus.CONFLICT)
+                .body(exception.getMessage());
+        }
 }

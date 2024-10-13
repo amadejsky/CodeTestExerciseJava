@@ -1,6 +1,9 @@
 package com.amadejsky.rest_manager_task02.service;
 
+import com.amadejsky.rest_manager_task02.exception.InvalidStatusException;
+import com.amadejsky.rest_manager_task02.exception.TaskNotFoundException;
 import com.amadejsky.rest_manager_task02.exception.UserNotFoundException;
+import com.amadejsky.rest_manager_task02.model.Task;
 import com.amadejsky.rest_manager_task02.model.User;
 import com.amadejsky.rest_manager_task02.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -14,8 +17,6 @@ public class UserServiceImpl implements UserService{
     public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
-
-
     @Override
     public List<User> getUsers() {
         return (List<User>) userRepository.findAll();
