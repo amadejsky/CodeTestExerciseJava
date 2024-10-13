@@ -39,24 +39,26 @@ public class TaskServiceImpl implements TaskService{
     }
     @Override
     public Task addTask(Task task) {
-        if(task.getStatus() == null){
+        validateTaskStatus(task);
+        try{
+            return taskRepository.save(task);
+        } catch (Exception e){
+            throw new RuntimeException("Failed to save task due to invalid arguments given "+e.getMessage());
+        }
+    }
+    private void validateTaskStatus(Task task) {
+        if (task.getStatus() == null) {
             throw new InvalidStatusException("Task status cannot be null!");
         }
         String statusStr = task.getStatus().name();
         System.out.println("Received task status: " + statusStr);
-
-        if(!statusStr.matches(STATUS_REGEX)){
-            throw new InvalidStatusException("Invalid status value given!: "+statusStr);
+        if (!statusStr.matches(STATUS_REGEX)) {
+            throw new InvalidStatusException("Invalid status value given!: " + statusStr);
         }
-        try{
-            task.setStatus(Task.Status.valueOf(statusStr.toUpperCase()));
-        }catch (IllegalArgumentException e){
-            throw new InvalidStatusException("Invalid status value given!:"+statusStr);
-        }
-        try{
-            return taskRepository.save(task);
-        } catch (IllegalArgumentException e){
-            throw new InvalidStatusException("Failed to save task due to invalid arguments given "+e.getMessage());
+        try {
+            Task.Status.valueOf(statusStr.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            throw new InvalidStatusException("Invalid status value given!:" + statusStr);
         }
     }
     @Override
